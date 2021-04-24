@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :movies do
+    collection do
+      get :post2000
+      #movies/post2000
+    end
+    member do
+      get :producer
+    end
+    resources :reviews, only: [:new,:create]
+  end
+  #we dont need the movie to destroy the review
+  resources :reviews, only: [:destroy]
 end
